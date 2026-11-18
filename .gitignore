@@ -1,0 +1,21 @@
+# Java/Maven
+Backend/agrotis-backend/target/
+Backend/agrotis-backend/.mvn/
+Backend/agrotis-backend/data/
+*.mv.db
+*.trace.db
+
+# Node/Vite
+Frontend/node_modules/
+Frontend/dist/
+
+# Python / local environment
+.venv/
+
+# OS files
+.DS_Store
+
+# IDE metadata and local export
+.idea/
+**/.idea/
+Backend/backend.zip

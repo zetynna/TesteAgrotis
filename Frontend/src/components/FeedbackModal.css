@@ -1,0 +1,77 @@
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(16, 29, 21, 0.48);
+}
+
+.feedback-modal {
+  width: min(100%, 460px);
+  padding: 28px;
+  border: 1px solid #e5efe7;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 24px 80px rgba(14, 33, 21, 0.24);
+  text-align: center;
+}
+
+.feedback-icon {
+  display: grid;
+  width: 52px;
+  height: 52px;
+  margin: 0 auto 14px;
+  place-items: center;
+  border-radius: 50%;
+  background: #e7f7ed;
+  color: #1d6f47;
+  font-size: 1.8rem;
+  font-weight: 800;
+}
+
+.feedback-modal.error .feedback-icon {
+  background: #fdeceb;
+  color: #9f2d2d;
+}
+
+.feedback-modal h2 {
+  margin: 0 0 10px;
+}
+
+.feedback-modal p {
+  margin: 0 0 22px;
+  color: #52635a;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  text-align: left;
+}
+
+.feedback-modal .primary-button {
+  min-width: 120px;
+}
+
+.confirmation-modal h2 {
+  margin-bottom: 10px;
+}
+
+.confirmation-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.danger-button {
+  padding: 10px 16px;
+  border: 0;
+  border-radius: 10px;
+  background: #b84b4b;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.danger-button:hover {
+  background: #9f3838;
+}

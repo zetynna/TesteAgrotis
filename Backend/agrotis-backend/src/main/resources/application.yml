@@ -1,0 +1,55 @@
+spring:
+  datasource:
+    url: "${AGROTIS_DB_URL:jdbc:h2:file:./data/agrotis;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE;CASE_INSENSITIVE_IDENTIFIERS=TRUE;AUTO_SERVER=TRUE}"
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        format_sql: true
+        jdbc:
+          time_zone: UTC
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+  sql:
+    init:
+      mode: never
+
+server:
+  port: 8080
+
+agrotis:
+  cep:
+    base-url: ${VIACEP_API_BASE_URL:https://viacep.com.br/ws}
+  finance:
+    producer-commission-rate: ${AGROTIS_FINANCE_PRODUCER_COMMISSION_RATE:0}
+    property-operational-rate: ${AGROTIS_FINANCE_PROPERTY_OPERATIONAL_RATE:0}
+    laboratory-territorial-rate: ${AGROTIS_FINANCE_LABORATORY_TERRITORIAL_RATE:0}
+  integration:
+    max-attempts: ${AGROTIS_INTEGRATION_MAX_ATTEMPTS:5}
+    base-backoff-seconds: ${AGROTIS_INTEGRATION_BASE_BACKOFF_SECONDS:2}
+    max-backoff-seconds: ${AGROTIS_INTEGRATION_MAX_BACKOFF_SECONDS:300}
+    poll-delay-ms: ${AGROTIS_INTEGRATION_POLL_DELAY_MS:1000}
+    in-progress-timeout-seconds: ${AGROTIS_INTEGRATION_IN_PROGRESS_TIMEOUT_SECONDS:900}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
