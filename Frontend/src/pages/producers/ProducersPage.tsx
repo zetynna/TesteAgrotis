@@ -295,17 +295,33 @@ export default function ProducersPage({ busyAction, runAction, onFeedback }: Pro
           <div className="property-selector">
             <span>Propriedades vinculadas</span>
             <div className="chip-list">
-              {properties.filter((property) => property.produtorId == null || property.produtorId === form.id).map((property) => (
-                <label key={property.id} className="chip">
-                  <input
-                    type="checkbox"
-                    checked={form.propriedadeIds.includes(property.id)}
-                    onChange={() => toggleProperty(property.id)}
-                  />
-                  {property.nome}
-                </label>
-              ))}
+              {properties.map((property) => {
+                const unavailable = property.produtorId != null && property.produtorId !== form.id
+                return (
+                  <label key={property.id} className={`chip${unavailable ? ' unavailable' : ''}`}>
+                    <input
+                      type="checkbox"
+                      checked={form.propriedadeIds.includes(property.id)}
+                      onChange={() => toggleProperty(property.id)}
+                      disabled={unavailable}
+                    />
+                    <span>{property.nome}</span>
+                    {unavailable && (
+                      <small className="chip-owner">
+                        Vinculada a {property.produtorNome || 'outro produtor'}
+                      </small>
+                    )}
+                  </label>
+                )
+              })}
             </div>
+            {properties.length === 0 ? (
+              <p className="property-help">Nenhuma propriedade cadastrada. Cadastre uma propriedade para vinculá-la ao produtor.</p>
+            ) : properties.every((property) => property.produtorId != null && property.produtorId !== form.id) ? (
+              <p className="property-help">
+                Todas as propriedades já estão vinculadas a outros produtores. Cadastre uma nova propriedade ou edite o produtor atual.
+              </p>
+            ) : null}
           </div>
 
           <div className="actions-row">
